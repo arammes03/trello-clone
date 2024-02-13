@@ -7,6 +7,7 @@ module.exports = {
         success: "#5aac44",
         hover: "#63c449",
         blue: "#0F66E0",
+        hoverBlue: "#579DFF",
       },
     },
   },
