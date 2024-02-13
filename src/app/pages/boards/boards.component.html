@@ -1,0 +1,155 @@
+<app-navbar />
+
+<div class="container flex space x-4 mt-5">
+  <div class="sm:w-3/6 md:w-3/6 lg:w-2/6 mr-4 pl-8 mt-4 sm:text-blue-900">
+    <ul class="flex flex-col font-semibold text-sm text-gray-600">
+      <li>
+        <a class="block bg-sky-100 rounded-lg py-2 px-3 text-primary-500"
+          ><fa-icon [icon]="faTrello" class="mr-5"></fa-icon>Tableros</a
+        >
+      </li>
+      <li class="mt-1">
+        <a class="block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer"
+          ><fa-icon [icon]="faBox" class="mr-5"></fa-icon>Plantillas</a
+        >
+      </li>
+      <li class="mt-1 mb-1">
+        <a class="block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer"
+          ><fa-icon [icon]="faWaveSquare" class="mr-5"></fa-icon>Inicio</a
+        >
+      </li>
+    </ul>
+    <hr />
+    <div class="mt-6">
+      <p class="font-semibold text-xs text-gray-500">Espacios de trabajo</p>
+      <cdk-accordion>
+        <cdk-accordion-item #accordionMenu="cdkAccordionItem">
+          <button
+            type="button"
+            (click)="accordionMenu.toggle()"
+            class="flex py-2 px-3 hover:bg-gray-200 rounded-lg text-sm font-semibold cursor-pointerfont-semibold text-gray-600 w-full mt-2"
+            style="justify-content: space-between"
+          >
+            <span> Espacio de trabajo de Trello </span>
+            <fa-icon
+              [icon]="accordionMenu.expanded ? faChevronUp : faChevronDown"
+            ></fa-icon>
+          </button>
+          <div
+            [ngClass]="{
+              hidden: !accordionMenu.expanded,
+              block: accordionMenu.expanded
+            }"
+          >
+            <ul class="ml-2 flex flex-col text-sm text-gray-700">
+              <li
+                class="block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer text-gray-600"
+              >
+                <a
+                  ><fa-icon [icon]="faTrello" class="mr-3"></fa-icon>Tableros</a
+                >
+              </li>
+              <li
+                class="block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer text-gray-600"
+              >
+                <a
+                  ><fa-icon [icon]="faHeart" class="mr-3"></fa-icon>Lo más
+                  destacado</a
+                >
+              </li>
+              <li
+                class="group block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer text-gray-600"
+              >
+                <a>
+                  <fa-icon [icon]="faBorderAll" class="mr-3"></fa-icon>Vistas
+                  <fa-icon
+                    [icon]="faChevronRight"
+                    class="float-right mr-2 opacity-0 transition-opacity duration-300 transform translate-x-full group-hover:opacity-100"
+                  ></fa-icon>
+                </a>
+              </li>
+
+              <li
+                class="block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer text-gray-600"
+              >
+                <a><fa-icon [icon]="faUsers" class="mr-3"></fa-icon>Miembros</a>
+              </li>
+              <li
+                class="block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer text-gray-600"
+              >
+                <a
+                  ><fa-icon [icon]="faGear" class="mr-3"></fa-icon
+                  >Configuración</a
+                >
+              </li>
+            </ul>
+          </div>
+        </cdk-accordion-item>
+      </cdk-accordion>
+
+      <!-- CDK-ACCORDION DINÁMICO -->
+      <cdk-accordion>
+        @for (item of items; track item) {
+        <cdk-accordion-item #accordionItem="cdkAccordionItem">
+          <button
+            class="w-full text-left"
+            type="button"
+            (click)="accordionItem.toggle()"
+          >
+            {{ item.label }}
+          </button>
+          <div [style.display]="accordionItem.expanded ? '' : 'none'">
+            <ul>
+              @for (subItem of item.items; track subItem) {
+              <li class="ml-2">
+                {{ subItem.label }}
+              </li>
+              }
+            </ul>
+          </div>
+        </cdk-accordion-item>
+        }
+      </cdk-accordion>
+    </div>
+  </div>
+  <div class="w-full mt-5 pl-3">
+    <h1 href="" class="cursor-auto font-bold text-gray-700 text-base">
+      <fa-icon [icon]="faClock" class="mr-2"></fa-icon>
+      Visto recientemente
+    </h1>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pr-3 mt-2"
+    >
+      <div
+        class="w-full bg-sky-700 px-4 py-2 rounded-md text-white font-bold h-24"
+      >
+        Board 1
+      </div>
+      <div
+        class="w-full bg-green-700 px-4 py-2 rounded text-white font-bold h-24"
+      >
+        Board 1
+      </div>
+      <div
+        class="w-full bg-amber-700 px-4 py-2 rounded text-white font-bold h-24"
+      >
+        Board 1
+      </div>
+      <div
+        class="w-full bg-indigo-700 px-4 py-2 rounded text-white font-bold h-24"
+      >
+        Board 1
+      </div>
+      <div
+        class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-24"
+      >
+        Board 1
+      </div>
+      <div
+        class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-24"
+      >
+        Board 1
+      </div>
+    </div>
+  </div>
+</div>
