@@ -1,0 +1,220 @@
+<nav class="bg-sky-700 border-gray-200 px-6 shadow-md">
+  <div class="flex flex-wrap justify-between items-center">
+    <div class="flex items-center">
+      <a routerLink="/login">
+        <img
+          loading="lazy"
+          class="w-20 mr-8"
+          src="assets/images/logo/logo-gradient-white-trello.png"
+          alt="logo"
+        />
+      </a>
+      <div class="flex items-center">
+        <!-- Menú desplegable en tamaño sm -->
+        <div class="sm:hidden flex items-center space-x-5">
+          <button type="button" class="flex rounded-full" aria-expanded="false">
+            <p>Mas</p>
+            <fa-icon [icon]="faChevronDown"></fa-icon>
+          </button>
+          <app-btn typeBtn="button" btnColor="primary">
+            <fa-icon [icon]="faPlus"></fa-icon>
+          </app-btn>
+        </div>
+        <!-- Menú de navegación normal -->
+        <ul class="hidden sm:flex items-center space-x-2 text-sm font-medium">
+          <li>
+            <a class="block py-3 px-4 text-white">Espacios de trabajo</a>
+          </li>
+          <li>
+            <a class="block py-3 px-4 text-white">Recientes</a>
+          </li>
+          <li>
+            <app-btn typeBtn="button" btnColor="primary">Crear</app-btn>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex items-center">
+      <div class="flex space-x-4">
+        <button class="text-white" type="button">
+          <fa-icon [icon]="faBell"></fa-icon>
+        </button>
+        <button class="text-white" type="button">
+          <fa-icon [icon]="faInfoCircle"></fa-icon>
+        </button>
+        <button
+          type="button"
+          class="flex rounded-full"
+          aria-expanded="false"
+          type="button"
+          (click)="isOpen = !isOpen"
+          cdkOverlayOrigin
+          #menuOverlay="cdkOverlayOrigin"
+        >
+          <img
+            class="w-8 h-8 rounded-full"
+            src="assets/images/profile/profile.jpg"
+            alt="user photo"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="menuOverlay"
+  [cdkConnectedOverlayOpen]="isOpen"
+>
+  <div
+    class="z-50 my-4 w-60 text-base list-none bg-white rounded-lg divide-gray-100 shadow"
+  >
+    <div class="py-3 px-4 flex justify-between">
+      <span class="block text-xs text-center font-bold text-gray-500"
+        >CUENTA</span
+      >
+    </div>
+    <div class="py-1 px-4 flex items-center space-x-4">
+      <img
+        class="w-10 h-10 rounded-full"
+        src="assets/images/profile/profile.jpg"
+        alt=""
+      />
+      <div>
+        <div class="text-sm text-gray-500">Alfonso Ramírez</div>
+        <div class="text-xs text-gray-500">arammes03&#64;gmail.com</div>
+      </div>
+    </div>
+    <ul class="py-1">
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-100"
+          >Cambiar cuentas</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-100"
+        >
+          Gestionar cuenta
+          <fa-icon
+            [icon]="faUpRightFromSquare"
+            class="float-right text-gray-600 items-center"
+          ></fa-icon>
+        </a>
+      </li>
+    </ul>
+    <hr />
+    <div class="py-3 px-4 flex justify-between">
+      <span class="block text-xs text-center font-bold text-gray-500"
+        >TRELLO</span
+      >
+    </div>
+    <ul class="py-0">
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-100"
+          >Perfil y visibilidad</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-100"
+          >Actividad</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-100"
+          >Tarjetas</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-100"
+          >Ajustes</a
+        >
+      </li>
+      <li class="pb-1">
+        <a
+          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-100"
+          (click)="isOpenTheme = !isOpenTheme"
+          cdkOverlayOrigin
+          #themeOverlay="cdkOverlayOrigin"
+          >Tema
+          <fa-icon [icon]="faSortDown" class="text-gray-500 float-right">
+          </fa-icon>
+        </a>
+
+        <!-- NG-TEMPLATE TEMA -->
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayOrigin]="themeOverlay"
+          [cdkConnectedOverlayOpen]="isOpenTheme"
+        >
+          <div
+            class="z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
+          >
+            <ul class="py-1" aria-labelledby="user-menu-button">
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-4 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-100"
+                  >Claro</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-4 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-100"
+                  >Oscuro</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-4 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-100"
+                  >Sistema</a
+                >
+              </li>
+            </ul>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+    <hr />
+    <ul>
+      <li class="pt-1">
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-100"
+          >Ayuda</a
+        >
+      </li>
+      <li class="pb-1">
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-100"
+          >Accesos directos</a
+        >
+      </li>
+    </ul>
+    <hr />
+    <ul class="py-1">
+      <li>
+        <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-600 dark:hover:bg-gray-100"
+          >Cerrar sesión</a
+        >
+      </li>
+    </ul>
+  </div>
+</ng-template>
