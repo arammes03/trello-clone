@@ -1,0 +1,10 @@
+<button
+  [type]="typeBtn"
+  class="text-white w-full font-medium rounded text-sm px-5 py-2 focus:ring-4"
+  [ngClass]="{
+    'bg-success hover:bg-hover': this.btnColor == 'success',
+    'bg-blue hover:bg-hoverBlue': this.btnColor == 'primary',
+  }"
+>
+  <ng-content></ng-content>
+</button>
