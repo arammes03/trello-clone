@@ -1,0 +1,131 @@
+<div class="w-screen h-screen bg-white sm:bg-gray-50 overflow-auto pb-6">
+  <div class="w-full h-full hidden sm:block absolute">
+    <img
+      loading="lazy"
+      src="/assets/svg/login-bg-left.svg"
+      alt="bg left"
+      class="absolute w-60 lg:w-96 left-0 bottom-0"
+    />
+    <img
+      loading="lazy"
+      src="/assets/svg/login-bg-rigth.svg"
+      alt="bg right"
+      class="absolute w-60 lg:w-96 right-0 bottom-0"
+    />
+  </div>
+  <div class="relative w-full sm:w-7/12 md:w-6/12 lg:w-4/12 m-auto">
+    <header class="pt-6 pb-2 flex justify-center">
+      <img
+        loading="lazy"
+        src="/assets/images/logo/logo-gradient-blue-trello.png"
+        alt="logo"
+        class="w-56"
+      />
+    </header>
+    <div class="bg-white rounded shadow-none sm:shadow-lg py-4 px-6 md:px-10">
+      <div class="mb-4">
+        <h1 class="text-center font-bold pt-4 pb-8 text-gray-500">
+          Iniciar sesión en Trello
+        </h1>
+        <form novalidate class="space-y-4">
+          <div class="relative">
+            <input
+              type="text"
+              name="email"
+              id="email"
+              class="w-full rounded bg-gray-100 border-2 border-gray-300 text-sm"
+              placeholder="Correo electrónico"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="w-full rounded bg-gray-100 border-2 border-gray-300 text-sm"
+              placeholder="Contraseña"
+            />
+          </div>
+          <div>
+            <app-btn [typeBtn]="'submit'" [btnColor]="'success'"
+              >Continuar</app-btn
+            >
+          </div>
+          <p class="mt-4 text-xs text-center text-gray-500">O</p>
+          <div>
+            <button
+              class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+            >
+              <img
+                src="https://assets.stickpng.com/images/5847f9cbcef1014c0b5e48c8.png"
+                alt=""
+                class="w-4 inline-block mr-2"
+              />
+              Continuar con Google
+            </button>
+          </div>
+          <div>
+            <button
+              class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/732/732221.png"
+                alt=""
+                class="w-4 inline-block mr-2"
+              />
+              Continuar con Microsoft
+            </button>
+          </div>
+          <div>
+            <button
+              class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+            >
+              <img
+                src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c516.png"
+                alt=""
+                class="w-4 inline-block mr-2"
+              />
+              Continuar con Apple
+            </button>
+          </div>
+
+          <div>
+            <button
+              class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Slack_icon_2019.svg/1024px-Slack_icon_2019.svg.png"
+                alt=""
+                class="w-4 inline-block mr-2"
+              />
+              Continuar con Slack
+            </button>
+          </div>
+        </form>
+      </div>
+      <hr class="my-4 border-b-1 border-r-gray-300" />
+      <div
+        class="flex justify-center items-center space-x-0 space-y-2 md:space-x-2 md:space-y-0 flex-col md:flex-row"
+      >
+        <a
+          routerLink="/forgot-password"
+          class="text-blue-600 font-light text-sm"
+          >¿No puede iniciar sesión?</a
+        >
+        <span class="text-gray-800 hidden md:block">●</span>
+        <a routerLink="/register" class="text-blue-600 font-light text-sm"
+          >Regístrese para crear una cuenta</a
+        >
+      </div>
+    </div>
+    <hr class="my-4 border-b-1 border-r-gray-300" />
+    <div class="flex justify-center">
+      <img
+        loading="lazy"
+        class="w-32 mt-4"
+        src="/assets/images/logo/horizontal-logo-onecolor-blue-atlassian.png"
+        alt="logo atlassian"
+      />
+    </div>
+  </div>
+</div>
