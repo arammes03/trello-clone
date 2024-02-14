@@ -1,0 +1,16 @@
+/* Estilos para navegadores webkit */
+/* Cambiar el color del pulgar y de la pista del scroll */
+::-webkit-scrollbar-track {
+  background-color: #0000001c;
+  border-radius: 10px;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #e5e7eb;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #579dff;
+  border-radius: 10px;
+}
