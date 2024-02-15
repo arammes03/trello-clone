@@ -1,32 +1,105 @@
-<nav class="bg-sky-700 border-gray-200 px-6 shadow-md">
+<nav class="bg-white px-6 shadow-md border-b-[1px] border-gray-400">
   <div class="flex flex-wrap justify-between items-center">
     <div class="flex items-center">
-      <a routerLink="/login">
+      <a
+        routerLink="/boards"
+        routerLinkActive="underline"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         <img
           loading="lazy"
           class="w-20 mr-8"
-          src="assets/images/logo/logo-gradient-white-trello.png"
+          src="assets/images/logo/logo-gradient-blue-trello.png"
           alt="logo"
         />
       </a>
       <div class="flex items-center">
-        <!-- Menú desplegable en tamaño sm -->
-        <div class="sm:hidden flex items-center space-x-5">
-          <button type="button" class="flex rounded-full" aria-expanded="false">
-            <p>Mas</p>
-            <fa-icon [icon]="faChevronDown"></fa-icon>
-          </button>
+        <!-- Menú navegación en tamaño sm -->
+        <div class="flex items-center space-x-5">
+          <ul
+            class="flex md:hidden items-center space-x-1 text-sm font-semibold"
+          >
+            <li>
+              <a class="block py-4 px-2 text-gray-600 font-semibold">
+                <span
+                  class="hover:bg-gray-200 hover:rounded-md py-2 px-2 cursor-pointer"
+                  >Más
+                  <fa-icon [icon]="faChevronDown"></fa-icon>
+                </span>
+              </a>
+            </li>
+            <app-btn typeBtn="button" btnColor="primary">
+              <fa-icon [icon]="faPlus"></fa-icon>
+            </app-btn>
+          </ul>
+        </div>
+
+        <!-- Menú de navegación MD -->
+        <ul
+          class="hidden lg:hidden md:flex items-center space-x-1 text-sm font-semibold"
+        >
+          <li>
+            <a class="block py-4 px-2 text-gray-600 font-semibold">
+              <span
+                class="hover:bg-gray-200 hover:rounded-md py-2 px-2 cursor-pointer"
+                >Espacios de trabajo
+                <fa-icon [icon]="faChevronDown"></fa-icon>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="block py-4 px-2 text-gray-600 font-semibold">
+              <span
+                class="hover:bg-gray-200 hover:rounded-md py-2 px-2 cursor-pointer"
+                >Más
+                <fa-icon [icon]="faChevronDown"></fa-icon>
+              </span>
+            </a>
+          </li>
           <app-btn typeBtn="button" btnColor="primary">
             <fa-icon [icon]="faPlus"></fa-icon>
           </app-btn>
-        </div>
+        </ul>
+
         <!-- Menú de navegación normal -->
-        <ul class="hidden sm:flex items-center space-x-2 text-sm font-medium">
+        <ul
+          class="hidden lg:flex md:hidden items-center space-x-1 text-sm font-semibold"
+        >
           <li>
-            <a class="block py-3 px-4 text-white">Espacios de trabajo</a>
+            <a class="block py-4 px-2 text-gray-600 font-semibold">
+              <span
+                class="hover:bg-gray-200 hover:rounded-md py-2 px-2 cursor-pointer"
+                >Espacios de trabajo
+                <fa-icon [icon]="faChevronDown"></fa-icon>
+              </span>
+            </a>
           </li>
           <li>
-            <a class="block py-3 px-4 text-white">Recientes</a>
+            <a class="block py-4 text-gray-600 font-semibold">
+              <span
+                class="hover:bg-gray-200 hover:rounded-md py-2 px-3 cursor-pointer"
+                >Recientes
+                <fa-icon [icon]="faChevronDown"></fa-icon>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="block py-4 text-gray-600 font-semibold">
+              <span
+                class="hover:bg-gray-200 hover:rounded-md py-2 px-3 cursor-pointer"
+                >Marcado
+                <fa-icon [icon]="faChevronDown"></fa-icon>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="block py-4 text-gray-600 font-semibold">
+              <span
+                class="hover:bg-gray-200 hover:rounded-md py-2 px-3 cursor-pointer"
+                >Plantillas
+                <fa-icon [icon]="faChevronDown"></fa-icon>
+              </span>
+            </a>
           </li>
           <li>
             <app-btn typeBtn="button" btnColor="primary">Crear</app-btn>
@@ -34,15 +107,37 @@
         </ul>
       </div>
     </div>
+
     <div class="flex items-center">
+      <span class="lg:flex hidden mr-2">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Buscar"
+          class="border-gray-200 rounded-md py-1 w-[10rem]"
+        />
+        <fa-icon
+          [icon]="faMagnifyingGlass"
+          class="absolute left-2 top-1/2text-gray-400"
+        ></fa-icon>
+      </span>
       <div class="flex space-x-4">
-        <button class="text-white" type="button">
+        <button
+          title="Notificaciones"
+          class="text-gray-600 hover:bg-gray-200 hover:rounded-full p-1"
+          type="button"
+        >
           <fa-icon [icon]="faBell"></fa-icon>
         </button>
-        <button class="text-white" type="button">
+        <button
+          title="Información"
+          class="text-gray-600 hover:bg-gray-200 hover:rounded-full p-1"
+          type="button"
+        >
           <fa-icon [icon]="faInfoCircle"></fa-icon>
         </button>
         <button
+          title="Cuenta"
           type="button"
           class="flex rounded-full"
           aria-expanded="false"
