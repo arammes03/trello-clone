@@ -14,7 +14,7 @@ import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 
 // IMPORT COMPONENTS
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { TaskDialogComponent } from '../../componets/task-dialog/task-dialog.component';
+import { TaskDialogComponent } from '../../components/task-dialog/task-dialog.component';
 import { ToDo, Column } from '../../models/todo.model';
 
 @Component({
@@ -120,11 +120,17 @@ export class BoardComponent {
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
   }
 
-  openDialog() {
-    this.dialog.open(TaskDialogComponent, {
+  openDialog(todo: ToDo, column: Column) {
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
       minWidth: '300px',
-      maxWidth: '50%',
-      autoFocus: false,
+      maxWidth: '60%',
+      data: {
+        todo: todo,
+        column: column,
+      },
+    });
+    dialogRef.closed.subscribe((output) => {
+      console.log(output);
     });
   }
 }
