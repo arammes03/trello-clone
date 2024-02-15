@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [RouterOutlet, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  providers: [HttpClientModule],
 })
 export class AppComponent {
   title = 'trello-clone';
