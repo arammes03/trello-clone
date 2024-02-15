@@ -110,16 +110,19 @@
 
     <div class="flex items-center">
       <span class="lg:flex hidden mr-2">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Buscar"
-          class="border-gray-200 rounded-md py-1 w-[10rem]"
-        />
-        <fa-icon
-          [icon]="faMagnifyingGlass"
-          class="absolute left-2 top-1/2text-gray-400"
-        ></fa-icon>
+        <label for="searchInput" class="relative mr-2">
+          <fa-icon
+            [icon]="faMagnifyingGlass"
+            class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
+          ></fa-icon>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar"
+            title="Buscar"
+            class="border-gray-200 rounded-md py-1 pl-8 w-[10rem]"
+          />
+        </label>
       </span>
       <div class="flex space-x-4">
         <button
