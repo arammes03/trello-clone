@@ -68,11 +68,24 @@
                   ></fa-icon>
                 </a>
               </li>
-
               <li
-                class="block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer text-gray-600"
+                class="group block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer text-gray-600"
               >
-                <a><fa-icon [icon]="faUsers" class="mr-3"></fa-icon>Miembros</a>
+                <a>
+                  <fa-icon [icon]="faUsers" class="mr-3"></fa-icon>Miembros
+
+                  <button
+                    class="float-right mr-2 opacity-0 transition-opacity duration-300 transform translate-x-full group-hover:opacity-100"
+                  >
+                    <fa-icon [icon]="faChevronRight"></fa-icon>
+                  </button>
+                  <button
+                    class="float-right transition-transform duration-300 translate-x-full group-hover:translate-x-[-10px]"
+                    (click)="openModalMembers()"
+                  >
+                    <fa-icon [icon]="faPlus"></fa-icon>
+                  </button>
+                </a>
               </li>
               <li
                 class="block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer text-gray-600"

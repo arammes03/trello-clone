@@ -5,6 +5,7 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
 
 // IMPORTS COMPONENTS
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { MemberModalComponent } from '../../components/member-modal/member-modal.component';
 
 // IMPORT ICONS
 import {
@@ -18,16 +19,26 @@ import {
   faUsers,
   faGear,
   faChevronRight,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { faTrello } from '@fortawesome/free-brands-svg-icons';
+import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-boards',
   standalone: true,
-  imports: [NgClass, NavbarComponent, FontAwesomeModule, CdkAccordionModule],
+  imports: [
+    NgClass,
+    NavbarComponent,
+    FontAwesomeModule,
+    CdkAccordionModule,
+    MemberModalComponent,
+  ],
   templateUrl: './boards.component.html',
 })
 export class BoardsComponent {
+  constructor(private dialog: Dialog) {}
+
   // ICONS
   faBox = faBox;
   faWaveSquare = faWaveSquare;
@@ -40,6 +51,7 @@ export class BoardsComponent {
   faUsers = faUsers;
   faGear = faGear;
   faChevronRight = faChevronRight;
+  faPlus = faPlus;
 
   items = [
     {
@@ -76,4 +88,11 @@ export class BoardsComponent {
       ],
     },
   ];
+
+  openModalMembers() {
+    this.dialog.open(MemberModalComponent, {
+      minWidth: '50%',
+      maxWidth: '60%',
+    });
+  }
 }
