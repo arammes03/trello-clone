@@ -1,4 +1,4 @@
-<div class="p-6 bg-gray-100 relative rounded shadow">
+<div class="p-6 bg-gray-100 relative rounded-lg shadow">
   <button
     type="button"
     class="absolute top-3 right-3 focus:outline-none p-2"
@@ -9,8 +9,13 @@
   <div class="flex space-x-2 mb-5">
     <fa-icon class="text-gray-800" [icon]="faCheckToSlot"></fa-icon>
     <div class="flex flex-col">
-      <h3 class="text-lg font-semibold text-gray-800">Task 1</h3>
-      <p class="text-sm text-gray-500">in list ToDo</p>
+      <h3 class="text-lg font-semibold text-gray-800">{{ todo.title }}</h3>
+      <div class="flex text-sm text-gray-500">
+        <p>
+          en la lista
+          <span class="underline cursor-pointer">{{ column.title }}</span>
+        </p>
+      </div>
     </div>
   </div>
   <div class="flex w-full gap-4">
@@ -27,21 +32,22 @@
       </div>
     </div>
     <div class="flex flex-auto space-y-2 flex-col">
+      <h2 class="text-xs text-gray-600">Añadir a la tarjeta</h2>
       <app-btn typeBtn="button" btnColor="gray-light">
-        <fa-icon class="text-gray-800" [icon]="faUser"></fa-icon>
-        Members
+        <fa-icon class="text-gray-800 mr-1" [icon]="faUser"></fa-icon>
+        Miembros
       </app-btn>
       <app-btn typeBtn="button" btnColor="gray-light">
-        <fa-icon class="text-gray-800" [icon]="faTag"></fa-icon>
-        Labels
+        <fa-icon class="text-gray-800 mr-1" [icon]="faTag"></fa-icon>
+        Etiquetas
       </app-btn>
       <app-btn typeBtn="button" btnColor="gray-light">
-        <fa-icon class="text-gray-800" [icon]="faCheckSquare"></fa-icon>
+        <fa-icon class="text-gray-800 mr-1" [icon]="faCheckSquare"></fa-icon>
         Checklist
       </app-btn>
       <app-btn typeBtn="button" btnColor="gray-light">
-        <fa-icon class="text-gray-800" [icon]="faClock"></fa-icon>
-        Dates
+        <fa-icon class="text-gray-800 mr-1" [icon]="faClock"></fa-icon>
+        Fechas
       </app-btn>
     </div>
   </div>
