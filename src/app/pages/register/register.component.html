@@ -25,9 +25,18 @@
     <div class="bg-white rounded shadow-none sm:shadow-lg py-4 px-6 md:px-10">
       <div class="mb-4">
         <h1 class="text-center font-bold pt-4 pb-8 text-gray-500">
-          Iniciar sesión en Trello
+          Regístrate en Trello
         </h1>
         <form novalidate class="space-y-4">
+          <div class="relative">
+            <input
+              type="text"
+              name="name"
+              id="email"
+              class="w-full rounded bg-gray-100 border-2 border-gray-300 text-sm"
+              placeholder="Nombre"
+            />
+          </div>
           <div class="relative">
             <input
               type="text"
@@ -47,8 +56,17 @@
             />
           </div>
           <div>
+            <input
+              type="password"
+              name="confPassword"
+              id="password"
+              class="w-full rounded bg-gray-100 border-2 border-gray-300 text-sm"
+              placeholder="Confirmar contraseña"
+            />
+          </div>
+          <div>
             <app-btn [typeBtn]="'submit'" [btnColor]="'success'"
-              >Continuar</app-btn
+              >Registrarse</app-btn
             >
           </div>
           <p class="mt-4 text-xs text-center text-gray-500">O</p>
@@ -107,18 +125,18 @@
       <div
         class="flex justify-center items-center space-x-0 space-y-2 md:space-x-2 md:space-y-0 flex-col md:flex-row"
       >
-        <a
-          routerLink="/forgot-password"
-          class="text-blue font-light text-sm underline cursor-pointer"
-          >¿No puede iniciar sesión?</a
-        >
-        <span class="text-gray-800 hidden md:block">●</span>
-        <a
-          routerLink="/register"
-          routerLinkActive="underline"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="text-blue font-light text-sm underline cursor-pointer"
-          >Regístrese para crear una cuenta</a
+        <a class="text-sm font-semibold text-gray-500"
+          >¿Ya tienes una cuenta?
+          <span>
+            <a
+              routerLink="/login"
+              routerLinkActive="underline"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="underline cursor-pointer text-blue"
+            >
+              Inicia sesión</a
+            ></span
+          ></a
         >
       </div>
     </div>
