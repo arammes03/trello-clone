@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -10,5 +11,9 @@ export const routes: Routes = [
     path: 'app',
     loadChildren: () =>
       import('./modules/layout/layout.routes').then((m) => m.layoutRoutes),
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
