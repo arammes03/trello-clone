@@ -41,8 +41,12 @@
           </div>
         </div>
         }
-        <button (click)="addColumn()" class="shrink-0">
-          Añade una nueva línea
+        <button
+          (click)="addColumn()"
+          class="rounded bg-gray-200 w-1/6 p-2 mr-3 shrink-0 font-medium"
+        >
+          <fa-icon [icon]="faPlus" class="float-start"> </fa-icon>
+          Añade una lista
         </button>
       </div>
     </div>

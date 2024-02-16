@@ -4,7 +4,8 @@
   <div class="sm:w-3/6 md:w-3/6 lg:w-2/6 mr-4 pl-8 mt-4 sm:text-blue-900">
     <ul class="flex flex-col font-semibold text-sm text-gray-600">
       <li>
-        <a class="block bg-sky-100 rounded-lg py-2 px-3 text-primary-500"
+        <a
+          class="block bg-sky-100 rounded-lg py-2 px-3 text-hoverBlue font-semibold"
           ><fa-icon [icon]="faTrello" class="mr-5"></fa-icon>Tableros</a
         >
       </li>
@@ -59,6 +60,9 @@
               </li>
               <li
                 class="group block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer text-gray-600"
+                routerLink="/table"
+                routerLinkActive="underline"
+                [routerLinkActiveOptions]="{ exact: true }"
               >
                 <a>
                   <fa-icon [icon]="faBorderAll" class="mr-3"></fa-icon>Vistas
@@ -68,6 +72,7 @@
                   ></fa-icon>
                 </a>
               </li>
+
               <li
                 class="group block py-2 px-3 hover:bg-gray-200 rounded-lg cursor-pointer text-gray-600"
               >
@@ -100,7 +105,7 @@
         </cdk-accordion-item>
       </cdk-accordion>
 
-      <!-- CDK-ACCORDION DINÁMICO -->
+      <!-- CDK-ACCORDION DINÁMICO
       <cdk-accordion>
         @for (item of items; track item) {
         <cdk-accordion-item #accordionItem="cdkAccordionItem">
@@ -123,6 +128,7 @@
         </cdk-accordion-item>
         }
       </cdk-accordion>
+       -->
     </div>
   </div>
   <div class="w-full mt-5 pl-3">
@@ -134,34 +140,77 @@
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pr-3 mt-2"
     >
       <div
-        class="w-full bg-sky-700 px-4 py-2 rounded-md text-white font-bold h-24"
+        class="w-full cursor-pointer bg-sky-700 px-4 py-2 rounded-md text-white font-bold h-24"
+        routerLink="/board"
+        routerLinkActive="underline"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         Board 1
       </div>
       <div
-        class="w-full bg-green-700 px-4 py-2 rounded text-white font-bold h-24"
+        class="w-full cursor-pointer bg-yellow-700 px-4 py-2 rounded-md text-white font-bold h-24"
+        routerLink="/board"
+        routerLinkActive="underline"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         Board 1
       </div>
       <div
-        class="w-full bg-amber-700 px-4 py-2 rounded text-white font-bold h-24"
+        class="w-full cursor-pointer bg-orange-700 px-4 py-2 rounded-md text-white font-bold h-24"
+        routerLink="/board"
+        routerLinkActive="underline"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         Board 1
       </div>
       <div
-        class="w-full bg-indigo-700 px-4 py-2 rounded text-white font-bold h-24"
+        class="w-full cursor-pointer bg-purple-700 px-4 py-2 rounded-md text-white font-bold h-24"
+        routerLink="/board"
+        routerLinkActive="underline"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         Board 1
       </div>
       <div
-        class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-24"
+        class="w-full cursor-pointer bg-red-700 px-4 py-2 rounded-md text-white font-bold h-24"
+        routerLink="/board"
+        routerLinkActive="underline"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         Board 1
       </div>
       <div
-        class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-24"
+        class="w-full cursor-pointer bg-green-700 px-4 py-2 rounded-md text-white font-bold h-24"
+        routerLink="/board"
+        routerLinkActive="underline"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         Board 1
+      </div>
+    </div>
+    <div class="w-full mt-5 pl-1">
+      <h1 href="" class="cursor-auto font-bold text-gray-700 text-base">
+        TUS ESPACIOS DE TRABAJO
+      </h1>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pr-3 mt-2"
+      >
+        <div
+          class="w-full cursor-pointer bg-sky-700 px-4 py-2 rounded-md text-white font-bold h-24"
+          routerLink="/board"
+          routerLinkActive="underline"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Board 1
+        </div>
+        <div
+          class="w-full cursor-pointer bg-yellow-700 px-4 py-2 rounded-md text-white font-bold h-24"
+          routerLink="/board"
+          routerLinkActive="underline"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Board 1
+        </div>
       </div>
     </div>
   </div>

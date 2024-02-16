@@ -65,7 +65,7 @@
             />
           </div>
           <div>
-            <app-btn [typeBtn]="'submit'" [btnColor]="'success'"
+            <app-btn [typeBtn]="'submit'" [btnColor]="'primary'"
               >Registrarse</app-btn
             >
           </div>
@@ -125,14 +125,14 @@
       <div
         class="flex justify-center items-center space-x-0 space-y-2 md:space-x-2 md:space-y-0 flex-col md:flex-row"
       >
-        <a class="text-sm font-semibold text-gray-500"
+        <a class="text-sm text-gray-500"
           >¿Ya tienes una cuenta?
           <span>
             <a
               routerLink="/login"
               routerLinkActive="underline"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="underline cursor-pointer text-blue"
+              class="underline cursor-pointer text-blue text-sm"
             >
               Inicia sesión</a
             ></span

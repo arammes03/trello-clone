@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { OverlayModule } from '@angular/cdk/overlay';
+
+// ROUTER
+import { RouterLinkWithHref, RouterLinkActive } from '@angular/router';
 
 // IMPORTS COMPONENTS
 import { NavbarComponent } from '../../components/navbar/navbar.component';
@@ -33,11 +37,15 @@ import { Dialog } from '@angular/cdk/dialog';
     FontAwesomeModule,
     CdkAccordionModule,
     MemberModalComponent,
+    OverlayModule,
+    RouterLinkWithHref,
+    RouterLinkActive,
   ],
   templateUrl: './boards.component.html',
 })
 export class BoardsComponent {
   constructor(private dialog: Dialog) {}
+  isOpen = false;
 
   // ICONS
   faBox = faBox;

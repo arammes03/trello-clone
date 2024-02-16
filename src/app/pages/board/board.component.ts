@@ -10,7 +10,7 @@ import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { Dialog } from '@angular/cdk/dialog';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsis, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 // IMPORT COMPONENTS
 import { NavbarComponent } from '../../components/navbar/navbar.component';
@@ -47,6 +47,7 @@ export class BoardComponent {
   constructor(private dialog: Dialog) {}
   // ICONS
   faElipsis = faEllipsis;
+  faPlus = faPlus;
   columns: Column[] = [
     {
       title: 'Para hacer',
