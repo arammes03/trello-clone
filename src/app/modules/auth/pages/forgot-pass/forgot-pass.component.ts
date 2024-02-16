@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLinkWithHref, RouterLinkActive } from '@angular/router';
 
-// COMPONENTS
-import { BtnComponent } from '../../components/btn/btn.component';
+//COMPONENTS
+import { BtnComponent } from '../../../../components/btn/btn.component';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-forgot-pass',
   standalone: true,
   imports: [BtnComponent, RouterLinkWithHref, RouterLinkActive],
-  templateUrl: './register.component.html',
+  templateUrl: './forgot-pass.component.html',
 })
-export class RegisterComponent {}
+export class ForgotPassComponent {}

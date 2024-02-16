@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLinkWithHref, RouterLinkActive } from '@angular/router';
-import { BtnComponent } from '../../components/btn/btn.component';
+import { BtnComponent } from '../../../../components/btn/btn.component';
 
 @Component({
   selector: 'app-login',
