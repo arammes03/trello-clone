@@ -47,7 +47,7 @@
             />
           </div>
           <div>
-            <app-btn [typeBtn]="'submit'" [btnColor]="'success'"
+            <app-btn [typeBtn]="'submit'" [btnColor]="'primary'"
               >Continuar</app-btn
             >
           </div>
@@ -109,6 +109,8 @@
       >
         <a
           routerLink="/forgot-password"
+          routerLinkActive="underline"
+          [routerLinkActiveOptions]="{ exact: true }"
           class="text-blue font-light text-sm underline cursor-pointer"
           >¿No puede iniciar sesión?</a
         >

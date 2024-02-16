@@ -7,6 +7,7 @@ import { BoardComponent } from './pages/board/board.component';
 import { ScrollComponent } from './pages/scroll/scroll.component';
 import { TableComponent } from './pages/table/table.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ForgotPassComponent } from './pages/forgot-pass/forgot-pass.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,10 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPassComponent,
   },
   {
     path: 'boards',
