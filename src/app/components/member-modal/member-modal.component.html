@@ -13,14 +13,13 @@
   </div>
   <div class="flex space-x-2 mb-5">
     <div class="w-[100%]">
-      <!-- <input
-        type="text"
-        id="searchInput"
-        placeholder="Dirección de correo electrónico"
+      <input
+        type="search"
+        placeholder="Dirección de correo electrónico o nombre"
         title="Buscar"
+        [formControl]="input"
         class="border-gray-200 border-2 rounded-md py-1 w-full"
       />
-      -->
       <p class="text-sm text-gray-500 pt-5">
         Invite a alguien a este Espacio de trabajo:
       </p>
@@ -28,7 +27,10 @@
         itemSize="50"
         class="h-64 w-full border overflow-y-scroll bg-white rounded mt-2"
       >
-        <div class="flex space-x-4 pl-3" *cdkVirtualFor="let user of users">
+        <div
+          class="flex space-x-4 pl-3"
+          *cdkVirtualFor="let user of dataSource"
+        >
           <img class="w-10 h-10 rounded-full mt-2" alt="" [src]="user.avatar" />
           <div class="flex-grow">
             <div class="space-y-1 font-medium dark:text-white w-full">

@@ -18,11 +18,19 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 // COMPONENTS
 import { User } from '../../models/user.model';
 import { BtnComponent } from '../btn/btn.component';
+import { DataSourceUser } from './data-source';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-member-modal',
   standalone: true,
-  imports: [FontAwesomeModule, ScrollingModule, HttpClientModule, BtnComponent],
+  imports: [
+    FontAwesomeModule,
+    ScrollingModule,
+    HttpClientModule,
+    BtnComponent,
+    ReactiveFormsModule,
+  ],
   templateUrl: './member-modal.component.html',
 })
 export class MemberModalComponent {
@@ -42,13 +50,18 @@ export class MemberModalComponent {
 
   constructor(private dialogRef: DialogRef, private http: HttpClient) {}
 
-  users: User[] = [];
+  dataSource = new DataSourceUser();
+  input = new FormControl('', { nonNullable: true });
 
   ngOnInit() {
     this.http
       .get<User[]>('https://api.escuelajs.co/api/v1/users')
       .subscribe((data) => {
-        this.users = data;
+        this.dataSource.init(data);
       });
+
+    this.input.valueChanges.subscribe((value) => {
+      this.dataSource.find(value);
+    });
   }
 }
