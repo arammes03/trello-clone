@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // ROUTER
-import { RouterLinkWithHref, RouterLinkActive } from '@angular/router';
+import { RouterLinkWithHref, RouterLinkActive, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http'; // PUNTUAL
 
 // ICONS
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -12,6 +13,12 @@ import { faPen, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 // COMPONENTS
 import { BtnComponent } from '../../../../components/btn/btn.component';
+
+// MODELS
+import { RequestStatus } from '../../../../models/request-status.model';
+
+// SERVICE
+import { AuthService } from '../../../../services/auth.service'; // PUNTUAL
 
 @Component({
   selector: 'app-login-form',
@@ -33,10 +40,14 @@ export class LoginFormComponent {
   faEyeSlash = faEyeSlash;
 
   showPassword = false;
-  status: string = 'init';
+  status: RequestStatus = 'init';
 
   // constructor
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   // FORM
   form = this.formBuilder.nonNullable.group({
@@ -44,11 +55,30 @@ export class LoginFormComponent {
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
+  apiUrl: string = 'https://fake-trello-api.herokuapp.com';
+
+  // METODO LOGIN
+  loginService(email: string, password: string) {
+    return this.http.post(`${this.apiUrl}/api/v1/auth/login`, {
+      email,
+      password,
+    });
+  }
+
   // FUNCION LOGIN
   login() {
     if (this.form.valid) {
       this.status = 'loading';
       const { email, password } = this.form.getRawValue();
+      this.loginService(email, password).subscribe({
+        next: () => {
+          this.status = 'success';
+          this.router.navigate(['app/boards']);
+        },
+        error: () => {
+          this.status = 'failed';
+        },
+      });
     } else this.form.markAllAsTouched();
   }
 }

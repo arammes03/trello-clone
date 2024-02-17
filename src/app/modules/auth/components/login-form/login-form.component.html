@@ -69,6 +69,13 @@
 
   <div>
     <app-btn [typeBtn]="'submit'" [btnColor]="'primary'">Continuar</app-btn>
+    <div>
+      @if (status === 'failed') {
+      <p class="font-medium text-red-500 text-xs mt-0 ml-1 text-center">
+        Las credenciales no son correctas
+      </p>
+      }
+    </div>
     <a routerLink="/app/boards">pal login</a>
   </div>
   <p class="mt-4 text-xs text-center text-gray-500">O</p>
