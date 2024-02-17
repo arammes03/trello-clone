@@ -1,0 +1,124 @@
+<h1 class="text-center font-bold pt-4 pb-8 text-gray-500">
+  Iniciar sesión en Trello
+</h1>
+<form [formGroup]="form" novalidate class="space-y-4" (ngSubmit)="login()">
+  <div>
+    <!-- CORREO ELECTRÓNICO -->
+    <div class="relative">
+      <input
+        #emailInput
+        formControlName="email"
+        type="email"
+        class="w-full rounded bg-gray-100 border-2 border-gray-300 text-sm"
+        placeholder="Correo electrónico"
+      />
+      <button
+        type="button"
+        class="p-2 absolute right-1"
+        (click)="emailInput.focus()"
+      >
+        <fa-icon [icon]="faPen"></fa-icon>
+      </button>
+    </div>
+    @if (form.controls.email.touched && form.controls.email.invalid) {
+    <div>
+      @if (form.controls.email.hasError('required')) {
+      <p class="font-medium text-red-500 text-xs mt-0 ml-1">
+        Este campo es requerido
+      </p>
+      } @if (form.controls.email.hasError('email')) {
+      <p class="font-medium text-red-500 text-xs">
+        Este campo debe ser un correo electrónico
+      </p>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- PASSWORD  -->
+  <div>
+    <div class="relative">
+      <input
+        formControlName="password"
+        [type]="showPassword ? 'text' : 'password'"
+        class="w-full rounded bg-gray-100 border-2 border-gray-300 text-sm"
+        placeholder="Contraseña"
+      />
+      <button
+        type="button"
+        class="p-2 absolute right-2"
+        (click)="showPassword = !showPassword"
+      >
+        <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
+      </button>
+    </div>
+    @if (form.controls.password.touched && form.controls.password.invalid) {
+    <div>
+      @if (form.controls.password.hasError('required')) {
+      <p class="font-medium text-red-500 text-xs mt-0 ml-1">
+        Este campo es requerido
+      </p>
+      } @if (form.controls.password.hasError('minlength')) {
+      <p class="font-medium text-red-500 text-xs">
+        Este campo debe ser al menos 6 carácteres
+      </p>
+      }
+    </div>
+    }
+  </div>
+
+  <div>
+    <app-btn [typeBtn]="'submit'" [btnColor]="'primary'">Continuar</app-btn>
+    <a routerLink="/app/boards">pal login</a>
+  </div>
+  <p class="mt-4 text-xs text-center text-gray-500">O</p>
+  <div>
+    <button
+      class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+    >
+      <img
+        src="/assets/images/icons/Google_icon.png"
+        alt=""
+        class="w-4 inline-block mr-2"
+      />
+      Continuar con Google
+    </button>
+  </div>
+  <div>
+    <button
+      class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+    >
+      <img
+        src="/assets/images/icons/Microsoft_Icon.png"
+        alt=""
+        class="w-4 inline-block mr-2"
+      />
+      Continuar con Microsoft
+    </button>
+  </div>
+  <div>
+    <button
+      class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+    >
+      <img
+        src="/assets/images/icons/Apple_icon.png"
+        alt=""
+        class="w-4 inline-block mr-2"
+      />
+      Continuar con Apple
+    </button>
+  </div>
+
+  <div>
+    <button
+      class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+    >
+      <img
+        src="/assets/images/icons/Slack_icon_2019.png"
+        alt=""
+        class="w-4 inline-block mr-2"
+      />
+      Continuar con Slack
+    </button>
+  </div>
+</form>
