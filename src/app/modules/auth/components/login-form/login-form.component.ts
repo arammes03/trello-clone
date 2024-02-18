@@ -25,7 +25,6 @@ import { AuthService } from '../../../../services/auth.service'; // PUNTUAL
   standalone: true,
   imports: [
     BtnComponent,
-    LoginFormComponent,
     FontAwesomeModule,
     ReactiveFormsModule,
     RouterLinkWithHref,
