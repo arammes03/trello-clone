@@ -1,0 +1,194 @@
+<h1 class="text-center font-bold pt-4 pb-8 text-gray-500">
+  Regístrate en Trello
+</h1>
+<form [formGroup]="form" novalidate class="space-y-4" (ngSubmit)="register()">
+  <div>
+    <!--NOMBREO -->
+    <div class="relative">
+      <input
+        formControlName="name"
+        type="text"
+        name="name"
+        class="w-full rounded bg-gray-100 border-2 border-gray-300 text-sm"
+        placeholder="Nombre"
+      />
+      <button type="button" class="p-2 absolute right-1">
+        <fa-icon [icon]="faSignature"></fa-icon>
+      </button>
+    </div>
+    @if (form.controls.name.touched && form.controls.name.invalid) {
+    <div>
+      @if (form.controls.name.hasError('required')) {
+      <p class="font-medium text-red-500 text-xs mt-0 ml-1">
+        Este campo es requerido
+      </p>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- CORREO ELECTRÓNICO -->
+  <div>
+    <div class="relative">
+      <input
+        #emailInput
+        formControlName="email"
+        type="email"
+        class="w-full rounded bg-gray-100 border-2 border-gray-300 text-sm"
+        placeholder="Correo electrónico"
+      />
+      <button type="button" class="p-2 absolute right-1">
+        <fa-icon [icon]="faPen"></fa-icon>
+      </button>
+    </div>
+    @if (form.controls.email.touched && form.controls.email.invalid) {
+    <div>
+      @if (form.controls.email.hasError('required')) {
+      <p class="font-medium text-red-500 text-xs mt-0 ml-1">
+        Este campo es requerido
+      </p>
+      } @if (form.controls.email.hasError('email')) {
+      <p class="font-medium text-red-500 text-xs">
+        Este campo debe ser un correo electrónico
+      </p>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- PASSWORD  -->
+  <div>
+    <div class="relative">
+      <input
+        formControlName="password"
+        [type]="showPassword ? 'text' : 'password'"
+        class="w-full rounded bg-gray-100 border-2 border-gray-300 text-sm"
+        placeholder="Contraseña"
+      />
+      <button
+        type="button"
+        class="p-2 absolute right-2"
+        (click)="showPassword = !showPassword"
+      >
+        <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
+      </button>
+    </div>
+    @if (form.controls.password.touched && form.controls.password.invalid) {
+    <div>
+      @if (form.controls.password.hasError('required')) {
+      <p class="font-medium text-red-500 text-xs mt-0 ml-1">
+        Este campo es requerido
+      </p>
+      } @if (form.controls.password.hasError('minlength')) {
+      <p class="font-medium text-red-500 text-xs">
+        Este campo debe ser al menos 8 carácteres
+      </p>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- CONFPASSWORD  -->
+  <div>
+    <div class="relative">
+      <input
+        formControlName="confPassword"
+        [type]="showPassword ? 'text' : 'password'"
+        class="w-full rounded bg-gray-100 border-2 border-gray-300 text-sm"
+        placeholder="Confirmar contraseña"
+      />
+      <button
+        type="button"
+        class="p-2 absolute right-2"
+        (click)="showPassword = !showPassword"
+      >
+        <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
+      </button>
+    </div>
+    @if (form.controls.confPassword.touched &&
+    form.controls.confPassword.invalid) {
+    <div>
+      @if (form.controls.confPassword.hasError('required')) {
+      <p class="font-medium text-red-500 text-xs mt-0 ml-1">
+        Este campo es requerido
+      </p>
+      } @if (form.controls.confPassword.hasError('minlength')) {
+      <p class="font-medium text-red-500 text-xs">
+        Este campo debe ser al menos 8 carácteres
+      </p>
+      }
+    </div>
+    }
+  </div>
+
+  @if (form.controls.confPassword.touched) {
+  <div>
+    @if (form.hasError('mismatch')) {
+    <p class="font-medium text-red-500 text-xs mt-0 ml-1">
+      La contraseña no coincide
+    </p>
+    }
+  </div>
+  }
+
+  <div>
+    <app-btn [typeBtn]="'submit'" [btnColor]="'primary'">Registrarse</app-btn>
+    <div>
+      @if (status === 'failed') {
+      <p class="font-medium text-red-500 text-xs mt-0 ml-1 text-center">
+        {{ message }}
+      </p>
+      }
+    </div>
+  </div>
+  <p class="mt-4 text-xs text-center text-gray-500">O</p>
+  <div>
+    <button
+      class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+    >
+      <img
+        src="/assets/images/icons/Google_icon.png"
+        alt=""
+        class="w-4 inline-block mr-2"
+      />
+      Continuar con Google
+    </button>
+  </div>
+  <div>
+    <button
+      class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+    >
+      <img
+        src="/assets/images/icons/Microsoft_Icon.png"
+        alt=""
+        class="w-4 inline-block mr-2"
+      />
+      Continuar con Microsoft
+    </button>
+  </div>
+  <div>
+    <button
+      class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+    >
+      <img
+        src="/assets/images/icons/Apple_icon.png"
+        alt=""
+        class="w-4 inline-block mr-2"
+      />
+      Continuar con Apple
+    </button>
+  </div>
+
+  <div>
+    <button
+      class="w-full rounded py-2 shadow-md text-sm font-bold text-gray-500 border-2 border-gray-100 flex items-center justify-center"
+    >
+      <img
+        src="/assets/images/icons/Slack_icon_2019.png"
+        alt=""
+        class="w-4 inline-block mr-2"
+      />
+      Continuar con Slack
+    </button>
+  </div>
+</form>
