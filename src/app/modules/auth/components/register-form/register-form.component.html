@@ -1,3 +1,54 @@
+@if (!showRegister) {
+<h1 class="text-center font-bold pt-4 pb-8 text-gray-500">
+  Regístrate en Trello
+</h1>
+<form
+  [formGroup]="formUser"
+  novalidate
+  class="space-y-4"
+  (ngSubmit)="validateUser()"
+>
+  <!-- CORREO ELECTRÓNICO -->
+  <div>
+    <div class="relative">
+      <input
+        formControlName="email"
+        type="email"
+        class="w-full rounded bg-gray-100 border-2 border-gray-300 text-sm"
+        placeholder="Correo electrónico"
+      />
+      <button type="button" class="p-2 absolute right-1">
+        <fa-icon [icon]="faPen"></fa-icon>
+      </button>
+    </div>
+    @if (formUser.controls.email.touched && formUser.controls.email.invalid) {
+    <div>
+      @if (formUser.controls.email.hasError('required')) {
+      <p class="font-medium text-red-500 text-xs mt-0 ml-1">
+        Este campo es requerido
+      </p>
+      } @if (formUser.controls.email.hasError('email')) {
+      <p class="font-medium text-red-500 text-xs">
+        Este campo debe ser un correo electrónico
+      </p>
+      }
+    </div>
+    }
+  </div>
+
+  <div>
+    <app-btn
+      [typeBtn]="'submit'"
+      [btnColor]="'primary'"
+      [loading]="statusUser === 'loading'"
+      >Continuar</app-btn
+    >
+  </div>
+</form>
+}
+
+<!-- FORM REGISTRO -->
+@if (showRegister) {
 <h1 class="text-center font-bold pt-4 pb-8 text-gray-500">
   Regístrate en Trello
 </h1>
@@ -124,7 +175,7 @@
   @if (form.controls.confPassword.touched) {
   <div>
     @if (form.hasError('mismatch')) {
-    <p class="font-medium text-red-500 text-xs mt-0 ml-1">
+    <p class="font-medium text-red-500 text-xs ml-1">
       La contraseña no coincide
     </p>
     }
@@ -132,14 +183,12 @@
   }
 
   <div>
-    <app-btn [typeBtn]="'submit'" [btnColor]="'primary'">Registrarse</app-btn>
-    <div>
-      @if (status === 'failed') {
-      <p class="font-medium text-red-500 text-xs mt-0 ml-1 text-center">
-        {{ message }}
-      </p>
-      }
-    </div>
+    <app-btn
+      [typeBtn]="'submit'"
+      [btnColor]="'primary'"
+      [loading]="status === 'loading'"
+      >Registrarse</app-btn
+    >
   </div>
   <p class="mt-4 text-xs text-center text-gray-500">O</p>
   <div>
@@ -192,3 +241,4 @@
     </button>
   </div>
 </form>
+}

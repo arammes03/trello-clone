@@ -68,7 +68,12 @@
   </div>
 
   <div>
-    <app-btn [typeBtn]="'submit'" [btnColor]="'primary'">Continuar</app-btn>
+    <app-btn
+      [typeBtn]="'submit'"
+      [btnColor]="'primary'"
+      [loading]="status === 'loading'"
+      >Continuar</app-btn
+    >
     <div>
       @if (status === 'failed') {
       <p class="font-medium text-red-500 text-xs mt-0 ml-1 text-center">

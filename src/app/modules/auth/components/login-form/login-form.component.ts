@@ -4,7 +4,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // ROUTER
-import { RouterLinkWithHref, RouterLinkActive, Router } from '@angular/router';
+import {
+  RouterLinkWithHref,
+  RouterLinkActive,
+  Router,
+  ActivatedRoute,
+} from '@angular/router';
 import { HttpClient } from '@angular/common/http'; // PUNTUAL
 
 // ICONS
@@ -45,8 +50,14 @@ export class LoginFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private http: HttpClient
-  ) {}
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParamMap.subscribe((params) => {
+      const email = params.get('email');
+      if (email) this.form.controls.email.setValue(email);
+    });
+  }
 
   // FORM
   form = this.formBuilder.nonNullable.group({

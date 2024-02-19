@@ -27,6 +27,7 @@ import { CustomValidators } from './../../../../utils/validators';
 
 // SERVICE
 import { AuthService } from '../../../../services/auth.service'; // PUNTUAL
+import { error } from 'console';
 
 @Component({
   selector: 'app-register-form',
@@ -48,7 +49,9 @@ export class RegisterFormComponent {
   faSignature = faSignature;
 
   showPassword = false;
+  showRegister = false;
   status: RequestStatus = 'init';
+  statusUser: RequestStatus = 'init';
   message: string = '';
 
   // constructor
@@ -57,6 +60,10 @@ export class RegisterFormComponent {
     private router: Router,
     private http: HttpClient // PUNTUAL
   ) {}
+
+  formUser = this.formBuilder.nonNullable.group({
+    email: ['', [Validators.email, Validators.required]],
+  });
 
   // FORM
   form = this.formBuilder.nonNullable.group(
@@ -85,19 +92,49 @@ export class RegisterFormComponent {
   // FUNCION Register
   register() {
     if (this.form.valid) {
-      this.status = 'loading';
+      this.statusUser = 'loading';
       const { name, email, password } = this.form.getRawValue();
       this.registerService(name, email, password).subscribe({
         next: () => {
-          this.status = 'success';
+          this.statusUser = 'success';
           this.router.navigate(['/login']);
         },
-        error: (error) => {
-          if (error.error.code === 'SQLITE_CONSTRAINT_UNIQUE')
-            this.message = 'Este usuario ya esta registrado';
-          this.status = 'failed';
+        error: () => {
+          this.statusUser = 'failed';
         },
       });
     } else this.form.markAllAsTouched();
+  }
+
+  // SERVICIO EMAIL DISPONIBLE
+  isAvailableService(email: string) {
+    return this.http.post<{ isAvailable: boolean }>(
+      `${this.apiUrl}/api/v1/auth/is-available`,
+      {
+        email,
+      }
+    );
+  }
+
+  validateUser() {
+    if (this.formUser.valid) {
+      this.statusUser = 'loading';
+      const { email } = this.formUser.getRawValue();
+      this.isAvailableService(email).subscribe({
+        next: (rta) => {
+          this.statusUser = 'success';
+          if (rta.isAvailable) {
+            this.showRegister = true;
+            this.form.controls.email.setValue(email);
+          } else
+            this.router.navigate(['/login'], {
+              queryParams: { email },
+            });
+        },
+        error: () => {
+          this.status = 'failed';
+        },
+      });
+    } else this.formUser.markAllAsTouched();
   }
 }
