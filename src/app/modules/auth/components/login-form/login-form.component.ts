@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 // FORMS
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -50,8 +50,8 @@ export class LoginFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.route.queryParamMap.subscribe((params) => {
       const email = params.get('email');
@@ -65,22 +65,12 @@ export class LoginFormComponent {
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-  apiUrl: string = 'https://fake-trello-api.herokuapp.com';
-
-  // METODO LOGIN
-  loginService(email: string, password: string) {
-    return this.http.post(`${this.apiUrl}/api/v1/auth/login`, {
-      email,
-      password,
-    });
-  }
-
   // FUNCION LOGIN
   login() {
     if (this.form.valid) {
       this.status = 'loading';
       const { email, password } = this.form.getRawValue();
-      this.loginService(email, password).subscribe({
+      this.authService.login(email, password).subscribe({
         next: () => {
           this.status = 'success';
           this.router.navigate(['app/boards']);

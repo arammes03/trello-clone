@@ -5,7 +5,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // ROUTER
 import { RouterLinkWithHref, RouterLinkActive, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; // PUNTUAL
 
 // ICONS
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -26,8 +25,7 @@ import { RequestStatus } from '../../../../models/request-status.model';
 import { CustomValidators } from './../../../../utils/validators';
 
 // SERVICE
-import { AuthService } from '../../../../services/auth.service'; // PUNTUAL
-import { error } from 'console';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-register-form',
@@ -58,7 +56,7 @@ export class RegisterFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private http: HttpClient // PUNTUAL
+    private authService: AuthService
   ) {}
 
   formUser = this.formBuilder.nonNullable.group({
@@ -78,26 +76,15 @@ export class RegisterFormComponent {
     }
   );
 
-  apiUrl: string = 'https://fake-trello-api.herokuapp.com';
-
-  // METODO REGISTER
-  registerService(name: string, email: string, password: string) {
-    return this.http.post(`${this.apiUrl}/api/v1/auth/register`, {
-      name,
-      email,
-      password,
-    });
-  }
-
   // FUNCION Register
   register() {
     if (this.form.valid) {
       this.statusUser = 'loading';
       const { name, email, password } = this.form.getRawValue();
-      this.registerService(name, email, password).subscribe({
+      this.authService.registerAndLogin(name, email, password).subscribe({
         next: () => {
           this.statusUser = 'success';
-          this.router.navigate(['/login']);
+          this.router.navigate(['/app/boards']);
         },
         error: () => {
           this.statusUser = 'failed';
@@ -106,21 +93,12 @@ export class RegisterFormComponent {
     } else this.form.markAllAsTouched();
   }
 
-  // SERVICIO EMAIL DISPONIBLE
-  isAvailableService(email: string) {
-    return this.http.post<{ isAvailable: boolean }>(
-      `${this.apiUrl}/api/v1/auth/is-available`,
-      {
-        email,
-      }
-    );
-  }
-
+  // FUNCION VALIDAR EMAL
   validateUser() {
     if (this.formUser.valid) {
       this.statusUser = 'loading';
       const { email } = this.formUser.getRawValue();
-      this.isAvailableService(email).subscribe({
+      this.authService.isAvailable(email).subscribe({
         next: (rta) => {
           this.statusUser = 'success';
           if (rta.isAvailable) {
