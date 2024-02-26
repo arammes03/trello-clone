@@ -45,4 +45,17 @@ export class AuthService {
       }
     );
   }
+
+  // METODO RECOVERY
+  recovery(email: string) {
+    return this.http.post(`${BASE_URL}/api/v1/auth/recovery`, { email });
+  }
+
+  // METODO CAMBIAR CONTRASEÑA
+  resetPass(token: string, newPassword: string) {
+    return this.http.post(`${BASE_URL}/api/v1/auth/change-password`, {
+      token,
+      newPassword,
+    });
+  }
 }

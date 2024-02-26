@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 
 // FORMS
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -10,7 +10,6 @@ import {
   Router,
   ActivatedRoute,
 } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; // PUNTUAL
 
 // ICONS
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -23,7 +22,7 @@ import { BtnComponent } from '../../../../components/btn/btn.component';
 import { RequestStatus } from '../../../../models/request-status.model';
 
 // SERVICE
-import { AuthService } from '../../../../services/auth.service'; // PUNTUAL
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-login-form',
