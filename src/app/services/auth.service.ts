@@ -1,23 +1,33 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { switchMap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 
 const BASE_URL = 'https://fake-trello-api.herokuapp.com';
+
+import { TokenService } from './token.service';
+
+import { ResponseLogin } from '../models/auth.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   // CONSTRUCTOR
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   // METODO LOGIN
   login(email: string, password: string) {
-    return this.http.post(`${BASE_URL}/api/v1/auth/login`, {
-      email,
-      password,
-    });
+    return this.http
+      .post<ResponseLogin>(`${BASE_URL}/api/v1/auth/login`, {
+        email,
+        password,
+      })
+      .pipe(
+        tap((response) => {
+          this.tokenService.saveToken(response.access_token);
+        })
+      );
   }
 
   // METODO REGISTER
