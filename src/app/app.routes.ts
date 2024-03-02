@@ -3,10 +3,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
 // GUARDIAN
 import { authGuard } from './guards/auth.guard';
+import { redirectGuard } from './guards/redirect.guard';
 
 export const routes: Routes = [
   {
     path: '',
+    canActivate: [redirectGuard],
     loadChildren: () =>
       import('./modules/auth/auth.routes').then((m) => m.authRoutes),
   },

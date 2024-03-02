@@ -30,6 +30,11 @@ export class AuthService {
       );
   }
 
+  // METODO LOGOUT
+  logout() {
+    this.tokenService.removeToken();
+  }
+
   // METODO REGISTER
   register(name: string, email: string, password: string) {
     return this.http.post(`${BASE_URL}/api/v1/auth/register`, {

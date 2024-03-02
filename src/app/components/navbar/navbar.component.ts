@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLinkWithHref, RouterLinkActive } from '@angular/router';
+import { RouterLinkWithHref, RouterLinkActive, Router } from '@angular/router';
 
 // IMPORT FA-ICONS
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -19,6 +19,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
 // IMPORTS COMPONENTS
 import { BtnComponent } from '../btn/btn.component';
 
+// SERVICES
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -32,6 +35,8 @@ import { BtnComponent } from '../btn/btn.component';
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {
+  constructor(private authService: AuthService, private router: Router) {}
+
   isOpen = false;
   isOpenTheme = false;
 
@@ -43,4 +48,10 @@ export class NavbarComponent {
   faPlus = faPlus;
   faChevronDown = faChevronDown;
   faMagnifyingGlass = faMagnifyingGlass;
+
+  // FUNCION LOGOUT
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }
