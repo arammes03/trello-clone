@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/trello-clone/browser",
+    "public": "dist/trello-clone",
     "ignore": [
       "firebase.json",
       "**/.*",
