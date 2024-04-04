@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLinkWithHref, RouterLinkActive, Router } from '@angular/router';
 
 // IMPORT FA-ICONS
@@ -21,6 +21,7 @@ import { BtnComponent } from '../btn/btn.component';
 
 // SERVICES
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -34,7 +35,7 @@ import { AuthService } from '../../services/auth.service';
   ],
   templateUrl: './navbar.component.html',
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   isOpen = false;
@@ -48,6 +49,14 @@ export class NavbarComponent {
   faPlus = faPlus;
   faChevronDown = faChevronDown;
   faMagnifyingGlass = faMagnifyingGlass;
+
+  user: User | null = null;
+
+  ngOnInit() {
+    this.authService.getProfile().subscribe((user) => {
+      this.user = user;
+    });
+  }
 
   // FUNCION LOGOUT
   logout() {

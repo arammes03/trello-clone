@@ -8,6 +8,7 @@ const BASE_URL = 'https://fake-trello-api.herokuapp.com';
 import { TokenService } from './token.service';
 
 import { ResponseLogin } from '../models/auth.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -71,6 +72,16 @@ export class AuthService {
     return this.http.post(`${BASE_URL}/api/v1/auth/change-password`, {
       token,
       newPassword,
+    });
+  }
+
+  // METODO OBTENER PERFIL
+  getProfile() {
+    const token = this.tokenService.getToken();
+    return this.http.get<User>(`${BASE_URL}/api/v1/auth/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 }

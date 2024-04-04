@@ -151,8 +151,8 @@
         >
           <img
             class="w-8 h-8 rounded-full"
-            src="assets/images/profile/profile.jpg"
-            alt="user photo"
+            [src]="user?.avatar"
+            alt="User avatar"
           />
         </button>
       </div>
@@ -177,12 +177,12 @@
     <div class="py-1 px-4 flex items-center space-x-4">
       <img
         class="w-10 h-10 rounded-full"
-        src="assets/images/profile/profile.jpg"
-        alt=""
+        [src]="user?.avatar"
+        alt="User avatar"
       />
       <div>
-        <div class="text-sm text-gray-500">Alfonso Ramírez</div>
-        <div class="text-xs text-gray-500">arammes03&#64;gmail.com</div>
+        <div class="text-sm text-gray-500">{{ user?.name }}</div>
+        <div class="text-xs text-gray-500">{{ user?.email }}</div>
       </div>
     </div>
     <ul class="py-1">
