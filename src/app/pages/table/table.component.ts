@@ -8,8 +8,12 @@ import { CdkTableModule } from '@angular/cdk/table';
 // COMPONENTS
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { BtnComponent } from '../../components/btn/btn.component';
-import { Product } from '../../models/product.model';
-import { DataSourceProduct } from './data-source';
+
+// SERVICES
+import { UsersService } from '../../services/users.service';
+
+//DATA-SOURCE
+import { DataSourceUser } from './data-source';
 
 @Component({
   selector: 'app-table',
@@ -24,27 +28,14 @@ import { DataSourceProduct } from './data-source';
   templateUrl: './table.component.html',
 })
 export class TableComponent {
-  constructor(private http: HttpClient) {}
+  constructor(private usersService: UsersService) {}
 
-  dataSource = new DataSourceProduct();
-  columns: string[] = ['id', 'title', 'price', 'cover', 'actions'];
-  total = 0;
-  input = new FormControl('', { nonNullable: true });
+  dataSource = new DataSourceUser();
+  columns: string[] = ['avatar', 'name', 'email'];
 
   ngOnInit(): void {
-    this.http
-      .get<Product[]>('https://api.escuelajs.co/api/v1/products')
-      .subscribe((data) => {
-        this.dataSource.init(data);
-        this.total = this.dataSource.getTotal();
-      });
-
-    this.input.valueChanges.subscribe((value) => {
-      this.dataSource.find(value);
+    this.usersService.getUsers().subscribe((users) => {
+      this.dataSource.init(users);
     });
-  }
-
-  update(product: Product) {
-    this.dataSource.update(product.id, { price: 20 });
   }
 }

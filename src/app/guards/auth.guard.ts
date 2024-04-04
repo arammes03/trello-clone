@@ -3,7 +3,6 @@ import { inject } from '@angular/core';
 
 import { TokenService } from '../services/token.service';
 
-
 export const authGuard: CanActivateFn = () => {
   const token: string | unknown = inject(TokenService).getToken();
   if (!token) {
